@@ -8,10 +8,14 @@ assignees: ''
 ---
 
 ## Description
-<!-- 설명을 작성하세요. -->
+설명을 작성하세요.
+
+<br/>
 
 ## TODO
-- [ ] <!-- todo -->
-- [ ] <!-- todo -->
+- [ ] todo
+- [ ] todo 
+
+<br/>
 
 ## ETC
