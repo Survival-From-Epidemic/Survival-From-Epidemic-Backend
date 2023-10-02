@@ -17,7 +17,7 @@ class GlobalExceptionFilter(
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        filterChain: FilterChain
+        filterChain: FilterChain,
     ) {
         try {
             filterChain.doFilter(request, response)
