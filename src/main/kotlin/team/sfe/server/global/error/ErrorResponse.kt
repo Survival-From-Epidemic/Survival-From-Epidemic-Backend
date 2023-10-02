@@ -10,7 +10,7 @@ import team.sfe.server.global.exception.MethodNotAllowedException
 data class ErrorResponse(
     val status: Int,
     val message: String,
-    val fieldErrors: List<FieldError>,
+    val fieldErrors: List<FieldError>
 ) {
 
     companion object {
@@ -82,7 +82,7 @@ data class ErrorResponse(
 data class FieldError(
     val field: String,
     val value: String,
-    val reason: String,
+    val reason: String
 ) {
 
     companion object {
