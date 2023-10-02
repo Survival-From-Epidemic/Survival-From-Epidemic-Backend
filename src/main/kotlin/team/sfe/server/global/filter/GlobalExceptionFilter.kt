@@ -11,7 +11,7 @@ import team.sfe.server.global.error.ErrorResponse
 import java.nio.charset.StandardCharsets
 
 class GlobalExceptionFilter(
-    private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper,
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
