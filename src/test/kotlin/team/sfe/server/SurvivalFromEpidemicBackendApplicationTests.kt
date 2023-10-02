@@ -9,5 +9,4 @@ class SurvivalFromEpidemicBackendApplicationTests {
     @Test
     fun contextLoads() {
     }
-
 }
