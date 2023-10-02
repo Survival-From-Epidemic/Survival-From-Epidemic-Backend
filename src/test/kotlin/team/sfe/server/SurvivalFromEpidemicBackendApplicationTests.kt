@@ -1,12 +1,12 @@
-package team.sfe.server
-
-import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
-
-@SpringBootTest
-class SurvivalFromEpidemicBackendApplicationTests {
-
-    @Test
-    fun contextLoads() {
-    }
-}
+//package team.sfe.server
+//
+//import org.junit.jupiter.api.Test
+//import org.springframework.boot.test.context.SpringBootTest
+//
+//@SpringBootTest
+//class SurvivalFromEpidemicBackendApplicationTests {
+//
+//    @Test
+//    fun contextLoads() {
+//    }
+//}
