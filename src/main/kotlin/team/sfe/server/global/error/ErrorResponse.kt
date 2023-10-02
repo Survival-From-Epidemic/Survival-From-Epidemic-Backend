@@ -71,7 +71,6 @@ data class ErrorResponse(
             fieldErrors = emptyList()
         )
 
-
         private fun of(e: CustomException, fieldErrors: List<FieldError>) = ErrorResponse(
             status = e.status,
             message = e.message,
