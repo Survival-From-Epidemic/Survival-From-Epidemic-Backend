@@ -38,3 +38,7 @@ out/
 
 ### DS_STORE ###
 .DS_STORE
+
+### Rest Docs ###
+/src/docs/asciidoc
+/src/main/resources/static/docs
