@@ -12,4 +12,4 @@ spring:
             hibernate:
                 format_sql: true
                 show_sql: ture
-        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database-platform: org.hibernate.dialect.MySQL8Dialect
