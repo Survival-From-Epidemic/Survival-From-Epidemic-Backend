@@ -12,27 +12,17 @@ import org.springframework.security.web.SecurityFilterChain
 import kotlin.jvm.Throws
 
 @Configuration
-@EnableWebSecurity
 class SecurityConfig {
 
-    @Throws(Exception::class)
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
-            .csrf { csrf ->
-                csrf.disable()
-            }
-            .formLogin {
-                    loginConfigurer -> loginConfigurer.disable()
-            }
+            .csrf { it.disable() }
+            .formLogin { it.disable() }
             .cors(Customizer.withDefaults())
-
-            .sessionManagement { configurer ->
-                configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            }
-            .authorizeRequests()
-            .anyRequest().permitAll()
-            .and().build()
+            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+            .authorizeHttpRequests { it.anyRequest().permitAll() }
+            .build()
     }
 
     @Bean
