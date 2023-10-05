@@ -14,6 +14,7 @@ import team.sfe.server.global.security.exception.InvalidTokenException
 class JwtParser(
     private val jwtProperties: JwtProperties
 ) {
+
     private fun getClaims(token: String): Jws<Claims> {
         return try {
             Jwts.parser()
