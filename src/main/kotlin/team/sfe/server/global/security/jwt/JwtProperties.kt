@@ -1,10 +1,9 @@
 package team.sfe.server.global.security.jwt
 
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.context.properties.bind.ConstructorBinding
 
 @ConfigurationProperties(prefix = "jwt")
-data class JwtProperties @ConstructorBinding constructor(
+data class JwtProperties(
     val secretKey: String,
     val accessExp: Int
 ) {
