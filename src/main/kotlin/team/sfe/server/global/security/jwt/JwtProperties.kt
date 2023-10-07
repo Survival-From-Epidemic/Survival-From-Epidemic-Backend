@@ -1,13 +1,12 @@
 package team.sfe.server.global.security.jwt
 
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.context.annotation.Configuration
+import org.springframework.boot.context.properties.bind.ConstructorBinding
 
-@Configuration
 @ConfigurationProperties(prefix = "jwt")
-data class JwtProperties(
-    var secretKey: String = "",
-    var accessExp: Int = 0
+data class JwtProperties @ConstructorBinding constructor(
+    val secretKey: String,
+    val accessExp: Int
 ) {
     companion object {
         const val HEADER = "Authorization"
