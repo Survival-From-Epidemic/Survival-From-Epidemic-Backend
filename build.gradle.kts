@@ -38,6 +38,9 @@ dependencies {
     // security
     implementation("org.springframework.boot:spring-boot-starter-security")
 
+    // jwt
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+
     // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
