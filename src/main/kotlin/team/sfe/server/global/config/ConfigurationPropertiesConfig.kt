@@ -1,4 +1,4 @@
-package team.sfe.server.global.security.jwt
+package team.sfe.server.global.config
 
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.context.annotation.Configuration
