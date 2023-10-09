@@ -15,7 +15,7 @@ class JwtFilter(
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        filterChain: FilterChain,
+        filterChain: FilterChain
     ) {
         val token = getToken(request)
         token?.let {
@@ -27,7 +27,10 @@ class JwtFilter(
     private fun getToken(request: HttpServletRequest): String? {
         val token = request.getHeader(HEADER)
 
-        return if (token.isNotEmpty() && token.startsWith(PREFIX)) token.substring(PREFIX.length)
-        else null;
+        return if (token.isNotEmpty() && token.startsWith(PREFIX)) {
+            token.substring(PREFIX.length)
+        } else {
+            null
+        }
     }
 }

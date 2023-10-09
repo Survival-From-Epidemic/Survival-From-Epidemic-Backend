@@ -18,7 +18,7 @@ import team.sfe.server.global.security.jwt.JwtParser
 @Configuration
 class SecurityConfig(
     private val jwtParser: JwtParser,
-    private val objectMapper: ObjectMapper,
+    private val objectMapper: ObjectMapper
 ) {
 
     @Bean
@@ -28,12 +28,9 @@ class SecurityConfig(
             .formLogin { it.disable() }
             .cors(Customizer.withDefaults())
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
-
             .authorizeHttpRequests {
-
                 // health check
-                it.requestMatchers(HttpMethod.GET,"/").permitAll()
-
+                it.requestMatchers(HttpMethod.GET, "/").permitAll()
                     .anyRequest().permitAll()
             }
             .addFilterBefore(JwtFilter(jwtParser), UsernamePasswordAuthenticationFilter::class.java)

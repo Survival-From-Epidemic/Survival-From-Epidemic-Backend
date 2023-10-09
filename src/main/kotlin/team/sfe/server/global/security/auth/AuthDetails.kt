@@ -8,7 +8,7 @@ import team.sfe.server.domain.user.domain.type.Authority
 class AuthDetails(
     private val userId: Long,
     private val authority: Authority
-): UserDetails {
+) : UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> =
         mutableListOf(SimpleGrantedAuthority(authority.name))
 
