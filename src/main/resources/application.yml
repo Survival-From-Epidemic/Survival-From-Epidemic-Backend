@@ -14,6 +14,10 @@ spring:
                 show_sql: ture
         database-platform: org.hibernate.dialect.MySQL8Dialect
 
+    redis:
+        host: localhost
+        port: 6379
+
 jwt:
     secret-key: ${SECRET_KEY}
     access-exp: ${ACCESS_EXP:1800}
