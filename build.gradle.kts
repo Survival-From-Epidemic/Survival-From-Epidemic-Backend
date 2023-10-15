@@ -47,6 +47,9 @@ dependencies {
 
     // rest docs
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+
+    // redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
 }
 
 tasks.withType<KotlinCompile> {
