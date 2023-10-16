@@ -4,11 +4,10 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.validation.constraints.NotNull
 import team.sfe.server.global.entity.BaseIdEntity
-import java.math.BigInteger
 
 @Entity
 class User(
-    override val id: BigInteger,
+    override val id: Long,
 
     @field:NotNull
     @Column(columnDefinition = "VARCHAR(10)")
