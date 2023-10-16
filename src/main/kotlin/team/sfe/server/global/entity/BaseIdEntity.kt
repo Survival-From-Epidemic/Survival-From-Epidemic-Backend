@@ -10,6 +10,6 @@ import jakarta.persistence.MappedSuperclass
 abstract class BaseIdEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "LONG")
+    @Column(columnDefinition = "INT")
     val id: Long
 )
