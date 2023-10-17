@@ -28,7 +28,7 @@ jobs:
       with:
           host port: 3306
           container port: 3306
-          mysql database: 'testdb'
+          mysql database: 'sfe'
           mysql root password: ${{ secrets.DB_PASSWORD }}
 
     - name: Build with Gradle
