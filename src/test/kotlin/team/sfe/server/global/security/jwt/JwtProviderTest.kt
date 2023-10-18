@@ -12,7 +12,8 @@ class JwtProviderTest {
     fun `유저의 정보를 담은 access_token을 생성한다`() {
         // given
         val jwtProperties = JwtProperties(
-            secretKey = "abcdabcdabcdabcdabcdabcdabcdabcd", accessExp = 1800
+            secretKey = "abcdabcdabcdabcdabcdabcdabcdabcd",
+            accessExp = 1800
         )
         val jwtProvider = JwtProvider(jwtProperties)
         val issuer = "강민"

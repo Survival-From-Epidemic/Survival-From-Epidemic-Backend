@@ -2,7 +2,6 @@ package team.sfe.server.global.security.jwt
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
-import io.jsonwebtoken.Header
 import io.jsonwebtoken.Header.JWT_TYPE
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.JwtException
