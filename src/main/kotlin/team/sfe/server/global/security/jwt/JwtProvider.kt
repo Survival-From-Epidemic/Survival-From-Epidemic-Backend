@@ -11,7 +11,7 @@ import java.util.Date
 
 @Component
 class JwtProvider(
-    private val jwtProperties: JwtProperties,
+    private val jwtProperties: JwtProperties
 ) {
 
     fun generateToken(id: String, authority: Authority) =
