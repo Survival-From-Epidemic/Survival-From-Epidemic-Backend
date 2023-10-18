@@ -1,15 +1,13 @@
 package team.sfe.server.global.security.jwt
 
+import io.jsonwebtoken.security.Keys
 import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "jwt")
-data class JwtProperties(
-    val secretKey: String,
+class JwtProperties(
+    secretKey: String,
     val accessExp: Int
 ) {
-    companion object {
-        const val HEADER = "Authorization"
-        const val PREFIX = "Bearer "
-        const val AUTHORITY_KEY = "auth"
-    }
+
+    val secretKey = Keys.hmacShaKeyFor(secretKey.toByteArray(Charsets.UTF_8))
 }
