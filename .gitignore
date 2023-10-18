@@ -42,3 +42,6 @@ out/
 ### Rest Docs ###
 /src/docs/asciidoc
 /src/main/resources/static/docs
+
+### test ###
+/src/test/resources
