@@ -6,12 +6,12 @@ import jakarta.validation.constraints.NotNull
 import org.springframework.data.redis.core.RedisHash
 import org.springframework.data.redis.core.index.Indexed
 
-@RedisHash(value = "refreshToken", timeToLive = 60*60*24*7)
-class RefreshToken (
+@RedisHash(value = "refreshToken", timeToLive = 60 * 60 * 24 * 7)
+class RefreshToken(
     @Id
     @Column(columnDefinition = "VARCHAR(255)")
     @Indexed
-    val token:String,
+    val token: String,
 
     @field:NotNull
     @Column(columnDefinition = "VARCHAR(10)")
