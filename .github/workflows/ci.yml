@@ -24,17 +24,12 @@ jobs:
     - name: Run ktlint
       run: ./gradlew ktlintCheck
 
-    - uses: mirromutth/mysql-action@v1.1
-      with:
-          host port: 3306
-          container port: 3306
-          mysql database: 'sfe'
-          mysql root password: ${{ secrets.DB_PASSWORD }}
+    - name: Create application.yml
+      run: |
+          touch ./src/main/resources/application.yml
+          echo "${{ secrets.APPLICATION }}" > ./src/main/resources/application.yml
 
     - name: Build with Gradle
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
           arguments: build
-      env:
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
