@@ -26,8 +26,8 @@ jobs:
 
     - name: Create application.yml
       run: |
-          touch ./src/main/resources/application.yml
-          echo "${{ secrets.APPLICATION }}" | base64 --decode > ./src/main/resources/application.yml
+         mkdir -p src/main/resources
+         echo "${{ secrets.APPLICATION }}" | base64 --decode > src/main/resources/application.yml
 
     - name: Build with Gradle
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
