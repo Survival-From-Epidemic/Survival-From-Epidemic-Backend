@@ -29,12 +29,13 @@ jobs:
          mkdir -p src/main/resources
          echo "${{ secrets.APPLICATION }}" | base64 --decode > src/main/resources/application.yml
 
-    - uses: mirromutth/mysql-action@v1.1
+    - name: Set up MySQL
+      uses: samin/mysql-action@v1.1
       with:
-          host port: 3306
-          container port: 3306
+          character set server: 'utf8'
           mysql database: 'sfe'
-          mysql root password: ${{ secrets.DB_PASSWORD }}
+          mysql user: 'root'
+          mysql password: ${{ secrets.MYSQL_PASSWORD }}
 
     - name: Build with Gradle
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
