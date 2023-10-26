@@ -28,16 +28,18 @@ class JwtProvider(
             .setExpiration(Date(System.currentTimeMillis() + jwtProperties.accessExp * 1000))
             .compact()
 
-    fun generateRefreshToken(authority: Authority) {
+    fun generateRefreshToken(id: String): RefreshToken {
         val refreshToken = RefreshToken(
             token = Jwts.builder()
                 .setHeaderParam(Header.JWT_TYPE, REFRESH)
                 .signWith(jwtProperties.secretKey, SignatureAlgorithm.HS256)
                 .setIssuedAt(Date())
                 .setExpiration(Date(System.currentTimeMillis() + jwtProperties.refreshExp * 1000))
-                .compact()
+                .compact(),
+            accountId = id
         )
 
         refreshTokenRepository.save(refreshToken)
+        return refreshToken
     }
 }
