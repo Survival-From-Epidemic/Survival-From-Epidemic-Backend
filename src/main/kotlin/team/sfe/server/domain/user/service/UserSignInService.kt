@@ -13,7 +13,7 @@ import team.sfe.server.global.security.jwt.JwtProvider
 @Service
 class UserSignInService(
     private val userRepository: UserRepository,
-    private val jwtTokenProvider: JwtProvider,
+    private val jwtProvider: JwtProvider,
     private val passwordEncoder: PasswordEncoder
 ) {
     @Transactional
@@ -24,13 +24,6 @@ class UserSignInService(
             throw PasswordMisMatchException
         }
 
-        val accessToken = jwtTokenProvider.generateToken(user.accountId, user.authority)
-        val refreshToken = jwtTokenProvider.generateRefreshToken(user.accountId)
-
-        return TokenResponse(
-            accessToken = accessToken,
-            refreshToken = refreshToken,
-            authority = user.authority
-        )
+        return jwtProvider.generateAllToken(user.accountId, user.authority)
     }
 }
