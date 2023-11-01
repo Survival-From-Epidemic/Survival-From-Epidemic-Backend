@@ -16,7 +16,7 @@ import team.sfe.server.domain.user.service.TokenRefreshService
 import team.sfe.server.domain.user.service.UserSignInService
 import team.sfe.server.domain.user.service.UserSignUpService
 
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RestController
 class UserController(
     private val userSignUpService: UserSignUpService,
@@ -26,17 +26,23 @@ class UserController(
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
-    fun signUp(@RequestBody request: @Valid UserSignUpRequest) {
-        userSignUpService.execute(request)
+    fun signUp(
+        @RequestBody @Valid
+        request: UserSignUpRequest
+    ): TokenResponse {
+        return userSignUpService.execute(request)
     }
 
-    @PostMapping("/token")
-    fun signIn(@RequestBody request: @Valid UserSignInRequest): TokenResponse {
+    @PostMapping("/tokens")
+    fun signIn(
+        @RequestBody @Valid
+        request: UserSignInRequest
+    ): TokenResponse {
         return userSignInService.execute(request)
     }
 
-    @PatchMapping("/token")
-    fun reIssue(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
+    @PatchMapping("/tokens")
+    fun reissue(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
         return tokenRefreshService.execute(refreshToken)
     }
 }
