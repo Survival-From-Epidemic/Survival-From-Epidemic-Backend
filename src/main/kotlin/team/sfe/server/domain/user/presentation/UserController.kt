@@ -42,7 +42,7 @@ class UserController(
         return userSignInService.execute(request)
     }
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/tokens")
     fun reissue(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
         return tokenRefreshService.execute(refreshToken)
