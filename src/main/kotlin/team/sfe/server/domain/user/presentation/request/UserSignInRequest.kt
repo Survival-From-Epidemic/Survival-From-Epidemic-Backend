@@ -2,9 +2,12 @@ package team.sfe.server.domain.user.presentation.request
 
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
+import jakarta.validation.constraints.Size
+import kotlin.math.max
 
 data class UserSignInRequest(
     @field:NotBlank
+    @field:Size(max = 10)
     val accountId: String,
 
     @field:NotBlank
