@@ -8,24 +8,27 @@ import team.sfe.server.domain.user.domain.repository.UserRepository
 import team.sfe.server.domain.user.domain.type.Authority
 import team.sfe.server.domain.user.facade.UserFacade
 import team.sfe.server.domain.user.presentation.request.UserSignUpRequest
+import team.sfe.server.domain.user.presentation.response.TokenResponse
+import team.sfe.server.global.security.jwt.JwtProvider
 
 @Service
 class UserSignUpService(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
-    private val userFacade: UserFacade
+    private val userFacade: UserFacade,
+    private val jwtProvider: JwtProvider
 ) {
     @Transactional
-    fun execute(request: UserSignUpRequest) {
-        userFacade.isAlreadyExists(request.accountId)
+    fun execute(request: UserSignUpRequest): TokenResponse {
+        userFacade.isUserAlreadyExists(request.accountId)
 
         userRepository.save(
             User(
-                id = 0,
                 accountId = request.accountId,
                 password = passwordEncoder.encode(request.password),
                 authority = Authority.USER
             )
         )
+        return jwtProvider.generateAllToken(request.accountId, Authority.USER)
     }
 }
