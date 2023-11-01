@@ -7,14 +7,17 @@ import team.sfe.server.domain.refreshToken.exception.RefreshTokenNotFoundExcepti
 import team.sfe.server.domain.user.facade.UserFacade
 import team.sfe.server.domain.user.presentation.response.TokenResponse
 import team.sfe.server.global.security.jwt.JwtParser
+import team.sfe.server.global.security.jwt.JwtProperties
 import team.sfe.server.global.security.jwt.JwtProvider
+import java.time.LocalDateTime
 
 @Service
 class TokenRefreshService(
     private val jwtProvider: JwtProvider,
     private val refreshTokenRepository: RefreshTokenRepository,
     private val jwtParser: JwtParser,
-    private val userFacade: UserFacade
+    private val userFacade: UserFacade,
+    private val jwtProperties: JwtProperties
 ) {
     @Transactional
     fun execute(refreshToken: String): TokenResponse {
@@ -23,14 +26,16 @@ class TokenRefreshService(
 
         val user = userFacade.getUserByAccountId(redisRefreshToken.accountId)
 
-        val newRefreshToken = jwtProvider.generateRefreshToken(redisRefreshToken.accountId)
-        redisRefreshToken.updateToken(newRefreshToken.token)
+        val newRefreshToken = jwtProvider.generateRefreshToken(redisRefreshToken.accountId, user.authority)
+        redisRefreshToken.updateToken(newRefreshToken)
 
-        val newAccessToken = jwtProvider.generateToken(user.accountId, user.authority)
+        val newAccessToken = jwtProvider.generateAccessToken(user.accountId, user.authority)
 
         return TokenResponse(
             accessToken = newAccessToken,
             refreshToken = newRefreshToken,
+            accessTokenExpiredAt = LocalDateTime.now().plusSeconds(jwtProperties.accessExp),
+            refreshTokenExpiredAt = LocalDateTime.now().plusSeconds(jwtProperties.refreshExp),
             authority = user.authority
         )
     }
