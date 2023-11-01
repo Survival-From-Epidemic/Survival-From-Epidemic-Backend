@@ -29,6 +29,7 @@ class UserSignUpService(
                 authority = Authority.USER
             )
         )
+
         return jwtProvider.generateAllToken(request.accountId, Authority.USER)
     }
 }
