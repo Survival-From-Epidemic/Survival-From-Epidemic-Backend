@@ -33,6 +33,7 @@ class UserController(
         return userSignUpService.execute(request)
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/tokens")
     fun signIn(
         @RequestBody @Valid
@@ -41,6 +42,7 @@ class UserController(
         return userSignInService.execute(request)
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/tokens")
     fun reissue(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
         return tokenRefreshService.execute(refreshToken)
