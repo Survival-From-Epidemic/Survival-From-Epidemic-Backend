@@ -35,8 +35,7 @@ class TokenRefreshService(
             accessToken = newAccessToken,
             refreshToken = newRefreshToken,
             accessTokenExpiredAt = LocalDateTime.now().plusSeconds(jwtProperties.accessExp),
-            refreshTokenExpiredAt = LocalDateTime.now().plusSeconds(jwtProperties.refreshExp),
-            authority = user.authority
+            refreshTokenExpiredAt = LocalDateTime.now().plusSeconds(jwtProperties.refreshExp)
         )
     }
 }

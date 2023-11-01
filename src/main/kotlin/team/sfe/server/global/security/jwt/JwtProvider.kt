@@ -20,12 +20,14 @@ class JwtProvider(
     private val refreshTokenRepository: RefreshTokenRepository
 ) {
     fun generateAllToken(id: String, authority: Authority): TokenResponse {
+        val accessToken = generateAccessToken(id, authority)
+        val refreshToken = generateRefreshToken(id, authority)
+
         val tokenResponse = TokenResponse(
-            generateAccessToken(id, authority),
-            generateRefreshToken(id, authority),
+            accessToken,
+            refreshToken,
             LocalDateTime.now().plusSeconds(jwtProperties.accessExp),
-            LocalDateTime.now().plusSeconds(jwtProperties.refreshExp),
-            authority
+            LocalDateTime.now().plusSeconds(jwtProperties.refreshExp)
         )
 
         refreshTokenRepository.save(
@@ -34,6 +36,7 @@ class JwtProvider(
                 token = tokenResponse.refreshToken
             )
         )
+
         return tokenResponse
     }
 
