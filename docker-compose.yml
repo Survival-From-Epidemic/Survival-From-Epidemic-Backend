@@ -1,0 +1,39 @@
+version: "3"
+services:
+    db:
+        container_name: sfe-mysql
+        image: mysql:8.0
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            TZ: "Asia/Seoul"
+        volumes:
+            - ./db:/var/lib/mysql
+        ports:
+            - "${MYSQL_HOST_PORT}:3306"
+        command:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+        networks:
+            - sfe-net
+    redis:
+        image: redis
+        container_name: sfe-redis
+        ports:
+            - "${REDIS_HOST_PORT}:6379"
+    app:
+        container_name: sfe-server
+        image: alsdl0629/sfe-server
+        ports:
+            - "${SPRING_HOST_PORT}:${SPRING_CONTAINER_PORT}"
+        depends_on:
+            - db
+        environment:
+            SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+            SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+            SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+        networks:
+            - sfe-net
+networks:
+    sfe-net:
+        driver: bridge
