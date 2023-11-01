@@ -7,10 +7,12 @@ import team.sfe.server.domain.user.exception.UserAlreadyExistsException
 import team.sfe.server.domain.user.exception.UserNotFoundException
 
 @Component
-class UserFacade(private val userRepository: UserRepository) {
+class UserFacade(
+    private val userRepository: UserRepository
+) {
 
-    fun isAlreadyExists(accountId: String) {
-        if (userRepository.findByAccountId(accountId) != null) {
+    fun isUserAlreadyExists(accountId: String) {
+        if (userRepository.existsByAccountId(accountId)) {
             throw UserAlreadyExistsException
         }
     }
