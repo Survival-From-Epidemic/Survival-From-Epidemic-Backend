@@ -17,13 +17,15 @@ services:
         networks:
             - sfe-net
     redis:
-        image: redis
         container_name: sfe-redis
+        image: redis
         ports:
             - "${REDIS_HOST_PORT}:6379"
     app:
         container_name: sfe-server
-        image: alsdl0629/sfe-server
+        build:
+             context: .
+             dockerfile: Dockerfile
         ports:
             - "${SPRING_HOST_PORT}:${SPRING_CONTAINER_PORT}"
         depends_on:
