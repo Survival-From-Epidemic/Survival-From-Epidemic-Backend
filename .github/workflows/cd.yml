@@ -39,4 +39,4 @@ jobs:
                      cd sfe
                      docker pull ${{ secrets.DOCKER_REPOSITORY }}
                      docker rm -f sfe-server
-                     docker run -dp ${{ SPRING_HOST_PORT }}:${{ SPRING_CONTAINER_PORT }} --name sfe-server --env-file .env ${{ secrets.DOCKER_REPOSITORY }}
+                     docker run -dp ${{ secrets.SPRING_HOST_PORT }}:${{ secrets.SPRING_CONTAINER_PORT }} --name sfe-server --env-file .env ${{ secrets.DOCKER_REPOSITORY }}
