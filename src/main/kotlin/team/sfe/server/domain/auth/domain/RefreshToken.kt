@@ -1,4 +1,4 @@
-package team.sfe.server.domain.refreshToken.domain
+package team.sfe.server.domain.auth.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash

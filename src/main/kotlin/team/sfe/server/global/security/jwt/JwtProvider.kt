@@ -4,8 +4,8 @@ import io.jsonwebtoken.Header
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.stereotype.Component
-import team.sfe.server.domain.refreshToken.domain.RefreshToken
-import team.sfe.server.domain.refreshToken.domain.repository.RefreshTokenRepository
+import team.sfe.server.domain.auth.domain.RefreshToken
+import team.sfe.server.domain.auth.domain.repository.RefreshTokenRepository
 import team.sfe.server.domain.user.domain.type.Authority
 import team.sfe.server.domain.user.presentation.response.TokenResponse
 import team.sfe.server.global.security.jwt.JwtConstant.ACCESS

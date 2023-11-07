@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import team.sfe.server.domain.auth.service.TokenRefreshService
+import team.sfe.server.domain.auth.service.UserSignInService
 import team.sfe.server.domain.user.presentation.request.UserSignInRequest
 import team.sfe.server.domain.user.presentation.request.UserSignUpRequest
 import team.sfe.server.domain.user.presentation.response.TokenResponse
-import team.sfe.server.domain.user.service.TokenRefreshService
-import team.sfe.server.domain.user.service.UserSignInService
 import team.sfe.server.domain.user.service.UserSignUpService
 
 @RequestMapping("/users")

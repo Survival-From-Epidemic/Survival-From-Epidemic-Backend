@@ -1,9 +1,9 @@
-package team.sfe.server.domain.user.service
+package team.sfe.server.domain.auth.service
 
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import team.sfe.server.domain.user.exception.PasswordMisMatchException
+import team.sfe.server.domain.auth.exception.PasswordMisMatchException
 import team.sfe.server.domain.user.facade.UserFacade
 import team.sfe.server.domain.user.presentation.request.UserSignInRequest
 import team.sfe.server.domain.user.presentation.response.TokenResponse

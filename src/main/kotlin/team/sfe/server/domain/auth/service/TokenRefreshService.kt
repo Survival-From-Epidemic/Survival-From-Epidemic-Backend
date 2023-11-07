@@ -1,9 +1,9 @@
-package team.sfe.server.domain.user.service
+package team.sfe.server.domain.auth.service
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import team.sfe.server.domain.refreshToken.domain.repository.RefreshTokenRepository
-import team.sfe.server.domain.refreshToken.exception.RefreshTokenNotFoundException
+import team.sfe.server.domain.auth.domain.repository.RefreshTokenRepository
+import team.sfe.server.domain.auth.exception.RefreshTokenNotFoundException
 import team.sfe.server.domain.user.facade.UserFacade
 import team.sfe.server.domain.user.presentation.response.TokenResponse
 import team.sfe.server.global.security.jwt.JwtParser
