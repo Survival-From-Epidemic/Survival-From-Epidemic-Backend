@@ -99,3 +99,7 @@ tasks {
         dependsOn(asciidoctor)
     }
 }
+
+tasks.getByName<Jar>("jar") {
+    enabled = false
+}
