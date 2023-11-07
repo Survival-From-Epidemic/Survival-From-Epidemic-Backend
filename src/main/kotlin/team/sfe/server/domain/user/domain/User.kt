@@ -10,7 +10,7 @@ import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
 class User(
-    override val id: Long,
+    override val id: Long = 0L,
 
     @field:NotNull
     @Column(columnDefinition = "VARCHAR(10)")

@@ -20,7 +20,7 @@ class JwtProviderTest {
         val authority = USER
 
         // when
-        val jwt = jwtProvider.generateToken(issuer, authority)
+        val jwt = jwtProvider.generateAccessToken(issuer, authority)
 
         // then
         val parsedJwt = Jwts.parserBuilder()

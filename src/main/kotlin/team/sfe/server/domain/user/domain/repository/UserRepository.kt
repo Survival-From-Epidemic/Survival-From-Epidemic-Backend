@@ -6,4 +6,6 @@ import team.sfe.server.domain.user.domain.User
 interface UserRepository : CrudRepository<User, Long> {
 
     fun findByAccountId(accountId: String): User?
+
+    fun existsByAccountId(accountId: String): Boolean
 }

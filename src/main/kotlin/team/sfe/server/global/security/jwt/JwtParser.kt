@@ -47,4 +47,11 @@ class JwtParser(
             }
         }
     }
+
+    fun parseToken(bearerToken: String?): String {
+        if (bearerToken != null && bearerToken.startsWith(JwtConstant.PREFIX) && bearerToken.length > 7) {
+            return bearerToken.substring(7)
+        }
+        return ""
+    }
 }
