@@ -1,4 +1,4 @@
-package team.sfe.server.domain.auth.domain.presentation
+package team.sfe.server.domain.auth.presentation
 
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
