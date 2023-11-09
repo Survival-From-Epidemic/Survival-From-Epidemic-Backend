@@ -3,7 +3,7 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://${DB_URL:localhost}:${DB_PORT:3306}/${DB_NAME:sfe}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
         username: ${DB_USERNAME:root}
-        password: ${DB_PASSWORD:qaz}
+        password: ${DB_PASSWORD}
 
     jpa:
         hibernate:
@@ -15,8 +15,9 @@ spring:
         database-platform: org.hibernate.dialect.MySQL8Dialect
 
     redis:
-        host: localhost
-        port: 6379
+         host: ${REDIS_HOST:localhost}
+         port: ${REDIS_PORT:6379}
+         password: ${REDIS_PASSWORD}
 
 jwt:
     secret-key: ${SECRET_KEY}
