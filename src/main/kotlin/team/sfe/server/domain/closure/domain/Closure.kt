@@ -10,7 +10,7 @@ import java.io.Serializable
 @Entity
 class Closure(
     @EmbeddedId
-    val closurePk: ClosureId,
+    val closureId: ClosureId,
 
     @field:NotNull
     @Column(columnDefinition = "TINYINT UNSIGNED")
