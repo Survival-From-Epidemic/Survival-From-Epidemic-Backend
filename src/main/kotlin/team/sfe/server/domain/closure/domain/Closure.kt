@@ -13,7 +13,7 @@ class Closure(
     val closurePk: ClosureId,
 
     @field:NotNull
-    @Column(columnDefinition = "INT")
+    @Column(columnDefinition = "TINYINT UNSIGNED")
     val depth: Int
 )
 
