@@ -15,7 +15,7 @@ class Element(
     val name: String,
 
     @field:NotNull
-    @Column(columnDefinition = "CHAR(3)")
+    @Column(columnDefinition = "CHAR(10)")
     val type: Type
 
 ) : BaseIdEntity(id)
