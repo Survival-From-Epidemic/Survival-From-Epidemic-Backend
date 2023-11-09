@@ -15,6 +15,10 @@ class Element(
     val name: String,
 
     @field:NotNull
+    @Column(columnDefinition = "VARCHAR(100)")
+    val content: String,
+
+    @field:NotNull
     @Column(columnDefinition = "CHAR(10)")
     val type: Type
 
