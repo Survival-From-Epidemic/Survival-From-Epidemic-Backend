@@ -6,10 +6,9 @@ import org.springframework.data.redis.connection.RedisConnectionFactory
 import org.springframework.data.redis.connection.RedisPassword
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
-import org.springframework.data.redis.core.RedisKeyValueAdapter
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories
 
-@EnableRedisRepositories(enableKeyspaceEvents = RedisKeyValueAdapter.EnableKeyspaceEvents.ON_STARTUP)
+@EnableRedisRepositories // (enableKeyspaceEvents = RedisKeyValueAdapter.EnableKeyspaceEvents.ON_STARTUP)
 @Configuration
 class RedisConfig(
     private val redisProperties: RedisProperties

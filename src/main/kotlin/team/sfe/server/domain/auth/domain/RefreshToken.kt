@@ -11,7 +11,7 @@ class RefreshToken(
     val accountId: String,
 
     @Indexed
-    var token: String,
+    var token: String
 ) {
     fun updateToken(token: String) {
         this.token = token
