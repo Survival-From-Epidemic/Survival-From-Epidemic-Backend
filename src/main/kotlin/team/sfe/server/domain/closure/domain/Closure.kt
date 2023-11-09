@@ -22,6 +22,6 @@ data class ClosureId(
     @Column(columnDefinition = "INT UNSIGNED")
     val ancestorId: Long,
 
-    @Column(columnDefinition = "INT")
+    @Column(columnDefinition = "INT UNSIGNED")
     val descendantId: Long
 ) : Serializable
