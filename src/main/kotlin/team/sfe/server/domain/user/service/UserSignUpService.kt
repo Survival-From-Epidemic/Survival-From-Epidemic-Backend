@@ -26,10 +26,7 @@ class UserSignUpService(
             User(
                 accountId = request.accountId,
                 password = passwordEncoder.encode(request.password),
-                authority = Authority.USER,
-                disease = null,
-                gameInfo = null,
-                person = null
+                authority = Authority.USER
             )
         )
 

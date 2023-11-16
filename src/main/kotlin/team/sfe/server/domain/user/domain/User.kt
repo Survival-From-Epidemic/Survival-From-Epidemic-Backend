@@ -31,13 +31,13 @@ class User(
 
     @OneToOne
     @JoinColumn(name = "id")
-    val disease: Disease?,
+    val disease: Disease? = null,
 
     @OneToOne
     @JoinColumn(name = "id")
-    val gameInfo: GameInfo?,
+    val gameInfo: GameInfo? = null,
 
     @OneToOne
     @JoinColumn(name = "id")
-    val person: Person?
+    val person: Person? = null
 ) : BaseIdEntity(id)
