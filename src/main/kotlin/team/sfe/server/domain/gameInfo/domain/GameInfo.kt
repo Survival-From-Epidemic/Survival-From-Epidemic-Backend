@@ -10,15 +10,15 @@ class GameInfo(
     override val id: Long = 0L,
 
     @field:NotNull
-    @Column(columnDefinition = "BIT(1)")
+    @Column(columnDefinition = "TINYINT(1)")
     val diseaseEnable: Boolean,
 
     @field:NotNull
-    @Column(columnDefinition = "BIT(1)")
+    @Column(columnDefinition = "TINYINT(1)")
     val pcrEnable: Boolean,
 
     @field:NotNull
-    @Column(columnDefinition = "BIT(1)")
+    @Column(columnDefinition = "TINYINT(1)")
     val kitEnable: Boolean,
 
     @field:NotNull
@@ -26,10 +26,10 @@ class GameInfo(
     val kitChance: Int,
 
     @field:NotNull
-    @Column(columnDefinition = "BIT(1)")
+    @Column(columnDefinition = "TINYINT(1)")
     val vaccineReserch: Boolean,
 
     @field:NotNull
-    @Column(columnDefinition = "BIT(1)")
+    @Column(columnDefinition = "TINYINT(1)")
     val vaccineEnded: Boolean
 ) : BaseIdEntity(id)

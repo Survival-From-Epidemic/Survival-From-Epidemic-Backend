@@ -1,6 +1,10 @@
 package team.sfe.server.domain.personData.domain
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.FetchType
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
 import jakarta.validation.constraints.NotNull
 import team.sfe.server.domain.personData.domain.type.SymptomType
 import team.sfe.server.domain.user.domain.User
@@ -21,7 +25,7 @@ class PersonData(
     val catchData: Int,
 
     @field:NotNull
-    @Column(columnDefinition = "BIT(1)")
+    @Column(columnDefinition = "TINYINT(1)")
     val isInfected: Boolean,
 
     @field:NotNull
