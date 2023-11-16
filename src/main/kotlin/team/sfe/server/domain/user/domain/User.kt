@@ -4,7 +4,12 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.OneToOne
 import jakarta.validation.constraints.NotNull
+import team.sfe.server.domain.disease.domain.Disease
+import team.sfe.server.domain.gameInfo.domain.GameInfo
+import team.sfe.server.domain.person.domain.Person
 import team.sfe.server.domain.user.domain.type.Authority
 import team.sfe.server.global.entity.BaseIdEntity
 
@@ -22,6 +27,17 @@ class User(
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(5)")
-    val authority: Authority
+    val authority: Authority,
 
+    @OneToOne
+    @JoinColumn(name = "id")
+    val disease: Disease? = null,
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    val gameInfo: GameInfo? = null,
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    val person: Person? = null
 ) : BaseIdEntity(id)
