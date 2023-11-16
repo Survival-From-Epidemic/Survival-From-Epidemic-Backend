@@ -7,9 +7,9 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToOne
 import jakarta.validation.constraints.NotNull
-import team.sfe.server.domain.person.domain.Person
 import team.sfe.server.domain.disease.domain.Disease
 import team.sfe.server.domain.gameInfo.domain.GameInfo
+import team.sfe.server.domain.person.domain.Person
 import team.sfe.server.domain.user.domain.type.Authority
 import team.sfe.server.global.entity.BaseIdEntity
 
