@@ -3,7 +3,7 @@ package team.sfe.server.domain.user.service
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import team.sfe.server.domain.user.domain.User
+import team.sfe.server.domain.user.domain.UserEntity
 import team.sfe.server.domain.user.domain.repository.UserRepository
 import team.sfe.server.domain.user.domain.type.Authority
 import team.sfe.server.domain.user.facade.UserFacade
@@ -23,7 +23,7 @@ class UserSignUpService(
         userFacade.isUserAlreadyExists(request.accountId)
 
         userRepository.save(
-            User(
+            UserEntity(
                 accountId = request.accountId,
                 password = passwordEncoder.encode(request.password),
                 authority = Authority.USER
