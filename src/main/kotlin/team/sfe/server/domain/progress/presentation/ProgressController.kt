@@ -19,7 +19,7 @@ class ProgressController(
     private val getProgressService: GetProgressService,
 ) {
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     fun saveProgress(@RequestBody request: SaveProgressRequest) {
         saveProgressService.execute(request)

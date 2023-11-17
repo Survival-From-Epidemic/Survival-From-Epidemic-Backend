@@ -13,9 +13,9 @@ import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
 class DiseaseEntity(
-
     override val id: Long = 0L,
 
+    @field:NotNull
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -32,7 +32,6 @@ class DiseaseEntity(
     @field:NotNull
     @Column(columnDefinition = "FLOAT")
     val infectPower: Float
-
 ) : BaseIdEntity(id) {
 
     fun toDiseaseDto() = Disease(

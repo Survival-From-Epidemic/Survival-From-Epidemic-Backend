@@ -14,6 +14,7 @@ import team.sfe.server.global.entity.BaseIdEntity
 class GameInfoEntity(
     override val id: Long = 0L,
 
+    @field:NotNull
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

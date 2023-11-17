@@ -2,6 +2,8 @@ package team.sfe.server.domain.progress.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
@@ -13,7 +15,6 @@ import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
 class PersonDataEntity(
-
     override val id: Long = 0L,
 
     @field:NotNull
@@ -30,6 +31,7 @@ class PersonDataEntity(
     val isInfected: Boolean,
 
     @field:NotNull
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
     val symptomType: SymptomType,
 
