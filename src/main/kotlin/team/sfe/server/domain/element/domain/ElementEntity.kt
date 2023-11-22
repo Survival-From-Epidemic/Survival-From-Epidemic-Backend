@@ -7,7 +7,7 @@ import team.sfe.server.domain.element.domain.type.Type
 import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
-class Element(
+class ElementEntity(
     override val id: Long = 0L,
 
     @field:NotNull
@@ -20,6 +20,5 @@ class Element(
 
     @field:NotNull
     @Column(columnDefinition = "CHAR(10)")
-    val type: Type
-
+    val type: Type,
 ) : BaseIdEntity(id)

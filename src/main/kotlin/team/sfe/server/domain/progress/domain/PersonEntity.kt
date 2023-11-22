@@ -13,7 +13,7 @@ import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
 class PersonEntity(
-    override val id: Long = 0L,
+    id: Long = 0L,
 
     @field:NotNull
     @MapsId
@@ -35,7 +35,7 @@ class PersonEntity(
 
     @field:NotNull
     @Column(columnDefinition = "INT")
-    val infectedPerson: Int
+    val infectedPerson: Int,
 ) : BaseIdEntity(id) {
 
     fun toPersonDto() = Person(

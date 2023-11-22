@@ -13,7 +13,7 @@ import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
 class DiseaseEntity(
-    override val id: Long = 0L,
+    id: Long = 0L,
 
     @field:NotNull
     @MapsId
@@ -31,7 +31,7 @@ class DiseaseEntity(
 
     @field:NotNull
     @Column(columnDefinition = "FLOAT")
-    val infectPower: Float
+    val infectPower: Float,
 ) : BaseIdEntity(id) {
 
     fun toDiseaseDto() = Disease(

@@ -11,7 +11,8 @@ data class GetProgressResponse(
     val kitEnabled: Boolean,
     val kitChance: Int,
     val vaccineResearch: Boolean,
-    val vaccineEnded: Boolean
+    val vaccineEnded: Boolean,
+    val etc: String,
 ) {
 
     companion object {
@@ -27,7 +28,8 @@ data class GetProgressResponse(
             kitEnabled = vo.gameInfoEntity.kitEnabled,
             kitChance = vo.gameInfoEntity.kitChance,
             vaccineResearch = vo.gameInfoEntity.vaccineResearch,
-            vaccineEnded = vo.gameInfoEntity.vaccineEnded
+            vaccineEnded = vo.gameInfoEntity.vaccineEnded,
+            etc = vo.gameInfoEntity.etc,
         )
     }
 }

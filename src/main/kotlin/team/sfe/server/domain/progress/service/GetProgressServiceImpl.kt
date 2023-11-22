@@ -34,15 +34,14 @@ class GetProgressServiceImpl(
         return GetProgressResponse(
             disease = diseaseEntity.toDiseaseDto(),
             person = personEntity.toPersonDto(),
-            persons = personData.map {
-                it.toPersonDataDto()
-            },
+            persons = personData.map { it.toPersonDataDto() },
             diseaseEnabled = gameInfoEntity.diseaseEnabled,
             pcrEnabled = gameInfoEntity.pcrEnabled,
             kitEnabled = gameInfoEntity.kitEnabled,
             kitChance = gameInfoEntity.kitChance,
             vaccineResearch = gameInfoEntity.vaccineResearch,
-            vaccineEnded = gameInfoEntity.vaccineEnded
+            vaccineEnded = gameInfoEntity.vaccineEnded,
+            etc = gameInfoEntity.etc,
         )
     }
 }

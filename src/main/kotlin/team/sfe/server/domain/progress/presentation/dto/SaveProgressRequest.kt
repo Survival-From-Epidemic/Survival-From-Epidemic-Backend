@@ -16,7 +16,8 @@ data class SaveProgressRequest(
     val kitEnabled: Boolean,
     val kitChance: Int,
     val vaccineResearch: Boolean,
-    val vaccineEnded: Boolean
+    val vaccineEnded: Boolean,
+    val etc: String,
 ) {
 
     fun toGameInfoEntity(userEntity: UserEntity) = GameInfoEntity(
@@ -26,7 +27,8 @@ data class SaveProgressRequest(
         kitEnabled = this.kitEnabled,
         kitChance = this.kitChance,
         vaccineResearch = this.vaccineResearch,
-        vaccineEnded = this.vaccineEnded
+        vaccineEnded = this.vaccineEnded,
+        etc = etc,
     )
 
     fun toPersonData(userEntity: UserEntity) = persons.map {

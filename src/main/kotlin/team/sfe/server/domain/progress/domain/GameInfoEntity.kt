@@ -12,7 +12,7 @@ import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
 class GameInfoEntity(
-    override val id: Long = 0L,
+    id: Long = 0L,
 
     @field:NotNull
     @MapsId
@@ -42,5 +42,9 @@ class GameInfoEntity(
 
     @field:NotNull
     @Column(columnDefinition = "TINYINT(1)")
-    val vaccineEnded: Boolean
+    val vaccineEnded: Boolean,
+
+    @field:NotNull
+    @Column(columnDefinition = "TEXT")
+    val etc: String,
 ) : BaseIdEntity(id)

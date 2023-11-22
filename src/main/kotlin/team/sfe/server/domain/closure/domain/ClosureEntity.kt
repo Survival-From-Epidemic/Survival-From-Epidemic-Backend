@@ -8,13 +8,13 @@ import jakarta.validation.constraints.NotNull
 import java.io.Serializable
 
 @Entity
-class Closure(
+class ClosureEntity(
     @EmbeddedId
     val closureId: ClosureId,
 
     @field:NotNull
     @Column(columnDefinition = "TINYINT UNSIGNED")
-    val depth: Int
+    val depth: Int,
 )
 
 @Embeddable
@@ -23,5 +23,5 @@ data class ClosureId(
     val ancestorId: Long,
 
     @Column(columnDefinition = "INT UNSIGNED")
-    val descendantId: Long
+    val descendantId: Long,
 ) : Serializable
