@@ -2,6 +2,7 @@ package team.sfe.server.global.error
 
 import jakarta.validation.ConstraintViolationException
 import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindException
 import org.springframework.web.HttpRequestMethodNotSupportedException
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -44,7 +45,7 @@ class GlobalExceptionHandler {
     ) = ErrorResponse.of(e)
 
     @ExceptionHandler(CustomException::class)
-    protected fun handleBusinessException(
+    protected fun handleCustomException(
         e: CustomException
-    ) = ErrorResponse.of(e)
+    ) = ResponseEntity<ErrorResponse>(ErrorResponse.of(e), HttpStatus.valueOf(e.status))
 }
