@@ -20,5 +20,5 @@ class ElementEntity(
 
     @field:NotNull
     @Column(columnDefinition = "CHAR(10)")
-    val type: Type,
+    val type: Type
 ) : BaseIdEntity(id)
