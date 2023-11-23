@@ -18,8 +18,8 @@ data class GetProgressResponse(
     companion object {
 
         fun of(vo: QueryProgressVO) = GetProgressResponse(
-            disease = vo.diseaseEntity.toDiseaseDto(),
-            person = vo.personEntity.toPersonDto(),
+            disease = vo.gameInfoEntity.toDiseaseDto(),
+            person = vo.gameInfoEntity.toPersonDto(),
             persons = vo.personDataEntity.map {
                 it.toPersonDataDto()
             },
@@ -29,7 +29,7 @@ data class GetProgressResponse(
             kitChance = vo.gameInfoEntity.kitChance,
             vaccineResearch = vo.gameInfoEntity.vaccineResearch,
             vaccineEnded = vo.gameInfoEntity.vaccineEnded,
-            etc = vo.gameInfoEntity.etc,
+            etc = vo.gameInfoEntity.etc
         )
     }
 }

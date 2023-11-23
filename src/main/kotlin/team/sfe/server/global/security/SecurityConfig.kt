@@ -19,7 +19,7 @@ import team.sfe.server.global.security.jwt.JwtParser
 @Configuration
 class SecurityConfig(
     private val jwtParser: JwtParser,
-    private val objectMapper: ObjectMapper,
+    private val objectMapper: ObjectMapper
 ) {
 
     @Bean
@@ -38,6 +38,7 @@ class SecurityConfig(
                 it.requestMatchers(HttpMethod.PATCH, "/auth/tokens").hasAuthority(USER.name)
                 it.requestMatchers(HttpMethod.POST, "/progresses").hasAuthority(USER.name)
                 it.requestMatchers(HttpMethod.GET, "/progresses").hasAuthority(USER.name)
+                it.requestMatchers(HttpMethod.PATCH, "/progresses").hasAuthority(USER.name)
                     .anyRequest().permitAll()
             }
             .addFilterBefore(JwtFilter(jwtParser), UsernamePasswordAuthenticationFilter::class.java)

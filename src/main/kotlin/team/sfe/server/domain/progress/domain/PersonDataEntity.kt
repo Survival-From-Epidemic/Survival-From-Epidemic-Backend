@@ -22,27 +22,56 @@ class PersonDataEntity(
     @JoinColumn(name = "user_id")
     val userEntity: UserEntity,
 
+    catchData: Int,
+
+    isInfected: Boolean,
+
+    symptomType: SymptomType,
+
+    deathWeight: Float,
+
+    recoverWeight: Float
+) : BaseIdEntity(id) {
+
     @field:NotNull
     @Column(columnDefinition = "INT")
-    val catchData: Int,
+    var catchData = catchData
+        protected set
 
     @field:NotNull
     @Column(columnDefinition = "TINYINT(1)")
-    val isInfected: Boolean,
+    var isInfected = isInfected
+        protected set
 
     @field:NotNull
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
-    val symptomType: SymptomType,
+    var symptomType = symptomType
+        protected set
 
     @field:NotNull
     @Column(columnDefinition = "FLOAT")
-    val deathWeight: Float,
+    var deathWeight = deathWeight
+        protected set
 
     @field:NotNull
     @Column(columnDefinition = "FLOAT")
-    val recoverWeight: Float
-) : BaseIdEntity(id) {
+    var recoverWeight = recoverWeight
+        protected set
+
+    fun updatePersonData(
+        catchData: Int,
+        isInfected: Boolean,
+        symptomType: SymptomType,
+        deathWeight: Float,
+        recoverWeight: Float
+    ) {
+        this.catchData = catchData
+        this.isInfected = isInfected
+        this.symptomType = symptomType
+        this.deathWeight = deathWeight
+        this.recoverWeight = recoverWeight
+    }
 
     fun toPersonDataDto() = PersonData(
         catchDate = this.catchData,
