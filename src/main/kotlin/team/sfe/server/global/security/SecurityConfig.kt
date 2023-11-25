@@ -36,9 +36,8 @@ class SecurityConfig(
                 it.requestMatchers(HttpMethod.POST, "/auth/tokens").permitAll()
                 it.requestMatchers(HttpMethod.PATCH, "/auth/tokens").permitAll()
                 it.requestMatchers(HttpMethod.PATCH, "/auth/tokens").hasAuthority(USER.name)
-                it.requestMatchers(HttpMethod.POST, "/progresses").hasAuthority(USER.name)
+                it.requestMatchers(HttpMethod.PUT, "/progresses").hasAuthority(USER.name)
                 it.requestMatchers(HttpMethod.GET, "/progresses").hasAuthority(USER.name)
-                it.requestMatchers(HttpMethod.PATCH, "/progresses").hasAuthority(USER.name)
                     .anyRequest().permitAll()
             }
             .addFilterBefore(JwtFilter(jwtParser), UsernamePasswordAuthenticationFilter::class.java)
