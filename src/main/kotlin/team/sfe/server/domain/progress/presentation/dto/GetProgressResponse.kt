@@ -1,5 +1,8 @@
 package team.sfe.server.domain.progress.presentation.dto
 
+import team.sfe.server.domain.progress.domain.GameInfoEntity
+import team.sfe.server.domain.progress.domain.KTimeLeapEntity
+
 data class GetProgressResponse(
     val kGameManager: KGameManager,
     val kLocalDataManager: KLocalDataManager,
@@ -10,22 +13,16 @@ data class GetProgressResponse(
     val kValueManager: KValueManager,
     val lastSaveDate: String
 ) {
-
-//    companion object {
-//
-//        fun of(vo: QueryProgressVO) = GetProgressResponse(
-//            disease = vo.gameInfoEntity.toDiseaseDto(),
-//            person = vo.gameInfoEntity.toPersonDto(),
-//            persons = vo.personDataEntity.map {
-//                it.toPersonDataDto()
-//            },
-//            diseaseEnabled = vo.gameInfoEntity.diseaseEnabled,
-//            pcrEnabled = vo.gameInfoEntity.pcrEnabled,
-//            kitEnabled = vo.gameInfoEntity.kitEnabled,
-//            kitChance = vo.gameInfoEntity.kitChance,
-//            vaccineResearch = vo.gameInfoEntity.vaccineResearch,
-//            vaccineEnded = vo.gameInfoEntity.vaccineEnded,
-//            etc = vo.gameInfoEntity.etc
-//        )
-//    }
+    companion object {
+        fun of(gameInfoEntity: GameInfoEntity, kTimeLeapEntities: List<KTimeLeapEntity>) = GetProgressResponse(
+            kGameManager = gameInfoEntity.toKGameManager(),
+            kLocalDataManager = gameInfoEntity.toKLocalDataManager(),
+            kMoneyManager = KMoneyManager(gameInfoEntity.money),
+            kNewsManager = KNewsManager(gameInfoEntity.newsKeys),
+            kServerDataManager = KServerDataManager(kTimeLeapEntities.map { it.toKTimeLeap() }),
+            kTimeManager = gameInfoEntity.toKTimeManager(),
+            kValueManager = gameInfoEntity.toKValueManager(),
+            lastSaveDate = gameInfoEntity.lastSaveDate,
+        )
+    }
 }

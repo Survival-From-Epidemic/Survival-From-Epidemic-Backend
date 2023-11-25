@@ -6,4 +6,6 @@ import team.sfe.server.domain.progress.domain.KTimeLeapEntity
 
 interface KTimeLeapRepository : CrudRepository<KTimeLeapEntity, Long> {
     fun findAllByGameInfoEntity(gameInfoEntity: GameInfoEntity): List<KTimeLeapEntity>
+
+    fun deleteAllByGameInfoEntity(gameInfoEntity: GameInfoEntity)
 }

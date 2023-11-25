@@ -4,6 +4,7 @@ import jakarta.persistence.CollectionTable
 import jakarta.persistence.Column
 import jakarta.persistence.Convert
 import jakarta.persistence.ElementCollection
+import jakarta.persistence.Embeddable
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
@@ -14,6 +15,7 @@ import jakarta.persistence.OneToOne
 import jakarta.validation.constraints.NotNull
 import team.sfe.server.domain.progress.domain.type.GameEndType
 import team.sfe.server.domain.progress.presentation.dto.KGameManager
+import team.sfe.server.domain.progress.presentation.dto.KLocalDataManager
 import team.sfe.server.domain.progress.presentation.dto.KLocalDataPair
 import team.sfe.server.domain.progress.presentation.dto.KTimeManager
 import team.sfe.server.domain.progress.presentation.dto.KValueManager
@@ -171,7 +173,7 @@ class GameInfoEntity(
     globalInfected: Boolean,
     // ---------------------------------
 
-    lastSaveDate: String
+    lastSaveDate: String,
 ) : BaseIdEntity(id) {
 
     @field:NotNull
@@ -442,7 +444,7 @@ class GameInfoEntity(
         totalPerson: Int,
         healthyPerson: Int,
         deathPerson: Int,
-        infectedPerson: Int
+        infectedPerson: Int,
     ) {
         this.diseaseEnabled = diseaseEnabled
         this.pcrEnabled = pcrEnabled
@@ -464,31 +466,36 @@ class GameInfoEntity(
         gameEndType = this.gameEndType,
     )
 
-    fun toKLocalDataManager() = this.pairs.map {
-        KLocalDataPair(
-            key = it.pairKey,
-            date = it.date,
-        )
-    }
+    fun toKLocalDataManager() = KLocalDataManager(
+        pairs = this.pairs.map {
+            KLocalDataPair(
+                key = it.pairKey,
+                date = it.date,
+            )
+        }
+    )
 
     fun toKTimeManager() = KTimeManager(
-        speedIdx, timeScale, date, nextNews, modificationCount, infectDate, infectGlobalDate, kitDate, nextKitUpgradeDate, nextModificationDate, pcrDate, startDate, today, vaccineEndDate, vaccineStartDate, lastMoneyMonth, started, globalInfected
+        speedIdx, timeScale, date, nextNews, modificationCount,
+        infectDate, infectGlobalDate, kitDate, nextKitUpgradeDate, nextModificationDate,
+        pcrDate, startDate, today, vaccineEndDate, vaccineStartDate,
+        lastMoneyMonth, started, globalInfected
     )
 
     fun toKValueManager() = KValueManager(
-        diseaseEnabled, pcrEnabled, kitEnabled, kitChance, vaccineResearch, vaccineEnded, nodeIdx, name, message, weight, parent, child, infectWeightGridDisease, infectivityGridDisease, infectPowerGridDisease, modificationDecrease, study, concentration, mask, annoy, infectWeight, infectivity, infectPower, preInfectWeight, preInfectivity, preInfectPower, totalPerson, healthyPerson, deathPerson, infectedPerson, banbal, authority, currentBanbal, banbalDate, authorityDate, authorityGoodDate, currentAuthority
+        diseaseEnabled, pcrEnabled, kitEnabled, kitChance, vaccineResearch,
+        vaccineEnded, nodeIdx, name, message, weight,
+        parent, child, infectWeightGridDisease, infectivityGridDisease, infectPowerGridDisease,
+        modificationDecrease, study, concentration, mask, annoy,
+        infectWeight, infectivity, infectPower, preInfectWeight, preInfectivity,
+        preInfectPower, totalPerson, healthyPerson, deathPerson, infectedPerson,
+        banbal, authority, currentBanbal, banbalDate, authorityDate,
+        authorityGoodDate, currentAuthority
     )
-
-//    fun toPersonDto() = Person(
-//        totalPerson = this.totalPerson,
-//        healthyPerson = this.healthyPerson,
-//        deathPerson = this.deathPerson,
-//        infectedPerson = this.infectedPerson
-//    )
-
-//    fun toDiseaseDto() = Disease(
-//        infectWeight = this.infectWeight,
-//        infectivity = this.infectivity,
-//        infectPower = this.infectPower
-//    )
 }
+
+@Embeddable
+data class KLocalDataPairEntity(
+    val pairKey: String,
+    val date: String,
+)

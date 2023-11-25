@@ -2,7 +2,7 @@ package team.sfe.server.domain.progress.presentation
 
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -16,8 +16,8 @@ import team.sfe.server.domain.progress.service.ProgressService
 class ProgressController(
     private val progressService: ProgressService
 ) {
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping
     fun saveProgress(@RequestBody request: SaveProgressRequest) {
         progressService.saveProgress(request)
     }
