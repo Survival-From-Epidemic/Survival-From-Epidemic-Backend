@@ -13,6 +13,10 @@ import jakarta.persistence.MapsId
 import jakarta.persistence.OneToOne
 import jakarta.validation.constraints.NotNull
 import team.sfe.server.domain.progress.domain.type.GameEndType
+import team.sfe.server.domain.progress.presentation.dto.KGameManager
+import team.sfe.server.domain.progress.presentation.dto.KLocalDataPair
+import team.sfe.server.domain.progress.presentation.dto.KTimeManager
+import team.sfe.server.domain.progress.presentation.dto.KValueManager
 import team.sfe.server.domain.user.domain.UserEntity
 import team.sfe.server.global.converter.StringListToStringConverter
 import team.sfe.server.global.entity.BaseIdEntity
@@ -454,6 +458,26 @@ class GameInfoEntity(
         this.deathPerson = deathPerson
         this.infectedPerson = infectedPerson
     }
+
+    fun toKGameManager() = KGameManager(
+        gameEnd = this.gameEnd,
+        gameEndType = this.gameEndType,
+    )
+
+    fun toKLocalDataManager() = this.pairs.map {
+        KLocalDataPair(
+            key = it.pairKey,
+            date = it.date,
+        )
+    }
+
+    fun toKTimeManager() = KTimeManager(
+        speedIdx, timeScale, date, nextNews, modificationCount, infectDate, infectGlobalDate, kitDate, nextKitUpgradeDate, nextModificationDate, pcrDate, startDate, today, vaccineEndDate, vaccineStartDate, lastMoneyMonth, started, globalInfected
+    )
+
+    fun toKValueManager() = KValueManager(
+        diseaseEnabled, pcrEnabled, kitEnabled, kitChance, vaccineResearch, vaccineEnded, nodeIdx, name, message, weight, parent, child, infectWeightGridDisease, infectivityGridDisease, infectPowerGridDisease, modificationDecrease, study, concentration, mask, annoy, infectWeight, infectivity, infectPower, preInfectWeight, preInfectivity, preInfectPower, totalPerson, healthyPerson, deathPerson, infectedPerson, banbal, authority, currentBanbal, banbalDate, authorityDate, authorityGoodDate, currentAuthority
+    )
 
 //    fun toPersonDto() = Person(
 //        totalPerson = this.totalPerson,

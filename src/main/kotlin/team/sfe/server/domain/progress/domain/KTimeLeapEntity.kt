@@ -7,6 +7,8 @@ import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.validation.constraints.NotNull
+import team.sfe.server.domain.progress.presentation.dto.KPerson
+import team.sfe.server.domain.progress.presentation.dto.KTimeLeap
 import team.sfe.server.global.converter.FloatListToStringConverter
 import team.sfe.server.global.converter.IntListToStringConverter
 import team.sfe.server.global.entity.BaseIdEntity
@@ -62,4 +64,20 @@ class KTimeLeapEntity(
     @field:NotNull
     @Convert(converter = IntListToStringConverter::class)
     val personGraph: List<Int>
-) : BaseIdEntity(id)
+) : BaseIdEntity(id) {
+    fun toKTimeLeap() = KTimeLeap(
+        date = this.date,
+        nodeBuy = this.nodeBuy,
+        nodeSell = this.nodeSell,
+        money = this.money,
+        authority = this.authority,
+        kPerson = KPerson(
+            totalPerson = this.totalPerson,
+            healthyPerson = this.healthyPerson,
+            deathPerson = this.deathPerson,
+            infectedPerson = this.infectedPerson,
+        ),
+        diseaseGraph = diseaseGraph,
+        personGraph = personGraph,
+    )
+}
