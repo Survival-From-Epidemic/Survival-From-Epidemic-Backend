@@ -4,18 +4,12 @@ import jakarta.persistence.AttributeConverter
 import jakarta.persistence.Converter
 
 @Converter
-class FloatListToStringConverter : AttributeConverter<List<Float>, String>{
+class FloatListToStringConverter : AttributeConverter<List<Float>, String> {
     override fun convertToDatabaseColumn(attribute: List<Float>?): String {
-        val sb = StringBuilder()
-        attribute!!.map {
-            sb.append("$it|")
-        }
-        return sb.toString()
+        return attribute!!.joinToString("|")
     }
 
     override fun convertToEntityAttribute(dbData: String?): List<Float> {
-        val list = mutableListOf<Float>()
-        dbData!!.split("|").map { list += it.toFloat() }
-        return list
+        return dbData!!.split("|").map { it.toFloat() }
     }
 }

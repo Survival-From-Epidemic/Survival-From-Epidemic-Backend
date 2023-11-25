@@ -5,17 +5,7 @@ import jakarta.persistence.Converter
 
 @Converter
 class IntListToStringConverter : AttributeConverter<List<Int>, String> {
-    override fun convertToDatabaseColumn(attribute: List<Int>?): String {
-        val sb = StringBuilder()
-        attribute!!.map {
-            sb.append("$it|")
-        }
-        return sb.toString()
-    }
+    override fun convertToDatabaseColumn(attribute: List<Int>?) = attribute!!.joinToString("|")
 
-    override fun convertToEntityAttribute(dbData: String?): List<Int> {
-        val list = mutableListOf<Int>()
-        dbData!!.split("|").map { list += it.toInt() }
-        return list
-    }
+    override fun convertToEntityAttribute(dbData: String?) = dbData!!.split("|").map { it.toInt() }
 }

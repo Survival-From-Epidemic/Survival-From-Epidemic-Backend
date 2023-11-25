@@ -12,7 +12,7 @@ import team.sfe.server.global.converter.IntListToStringConverter
 import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
-class KTimeLeap(
+class KTimeLeapEntity(
     id: Long = 0L,
 
     @field:NotNull
@@ -61,5 +61,5 @@ class KTimeLeap(
 
     @field:NotNull
     @Convert(converter = IntListToStringConverter::class)
-    val personGraph: List<Int>,
+    val personGraph: List<Int>
 ) : BaseIdEntity(id)

@@ -1,6 +1,6 @@
 package team.sfe.server.domain.progress.domain.repository
 
 import org.springframework.data.repository.CrudRepository
-import team.sfe.server.domain.progress.domain.KTimeLeap
+import team.sfe.server.domain.progress.domain.KTimeLeapEntity
 
-interface KTimeLeapRepository : CrudRepository<KTimeLeap, Long>
+interface KTimeLeapRepository : CrudRepository<KTimeLeapEntity, Long>

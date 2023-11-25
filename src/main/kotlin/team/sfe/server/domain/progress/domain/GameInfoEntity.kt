@@ -13,8 +13,6 @@ import jakarta.persistence.MapsId
 import jakarta.persistence.OneToOne
 import jakarta.validation.constraints.NotNull
 import team.sfe.server.domain.progress.domain.type.GameEndType
-import team.sfe.server.domain.progress.presentation.dto.Disease
-import team.sfe.server.domain.progress.presentation.dto.Person
 import team.sfe.server.domain.user.domain.UserEntity
 import team.sfe.server.global.converter.StringListToStringConverter
 import team.sfe.server.global.entity.BaseIdEntity
@@ -115,10 +113,12 @@ class GameInfoEntity(
     // ---------------------------------
 
     // KLocalDataManager
-    @ElementCollection @CollectionTable(
+    @ElementCollection
+    @CollectionTable(
         name = "KLocalDataPairEntity",
         joinColumns = [JoinColumn(name = "gameInfoId")]
-    ) val pairs: List<KLocalDataPair>,
+    )
+    val pairs: List<KLocalDataPairEntity>,
     // ---------------------------------
 
     // KMoneyManager
@@ -438,7 +438,7 @@ class GameInfoEntity(
         totalPerson: Int,
         healthyPerson: Int,
         deathPerson: Int,
-        infectedPerson: Int,
+        infectedPerson: Int
     ) {
         this.diseaseEnabled = diseaseEnabled
         this.pcrEnabled = pcrEnabled
@@ -455,16 +455,16 @@ class GameInfoEntity(
         this.infectedPerson = infectedPerson
     }
 
-    fun toPersonDto() = Person(
-        totalPerson = this.totalPerson,
-        healthyPerson = this.healthyPerson,
-        deathPerson = this.deathPerson,
-        infectedPerson = this.infectedPerson
-    )
+//    fun toPersonDto() = Person(
+//        totalPerson = this.totalPerson,
+//        healthyPerson = this.healthyPerson,
+//        deathPerson = this.deathPerson,
+//        infectedPerson = this.infectedPerson
+//    )
 
-    fun toDiseaseDto() = Disease(
-        infectWeight = this.infectWeight,
-        infectivity = this.infectivity,
-        infectPower = this.infectPower
-    )
+//    fun toDiseaseDto() = Disease(
+//        infectWeight = this.infectWeight,
+//        infectivity = this.infectivity,
+//        infectPower = this.infectPower
+//    )
 }
