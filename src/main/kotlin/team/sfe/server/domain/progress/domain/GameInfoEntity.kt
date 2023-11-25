@@ -173,7 +173,7 @@ class GameInfoEntity(
     globalInfected: Boolean,
     // ---------------------------------
 
-    lastSaveDate: String,
+    lastSaveDate: String
 ) : BaseIdEntity(id) {
 
     @field:NotNull
@@ -444,7 +444,7 @@ class GameInfoEntity(
         totalPerson: Int,
         healthyPerson: Int,
         deathPerson: Int,
-        infectedPerson: Int,
+        infectedPerson: Int
     ) {
         this.diseaseEnabled = diseaseEnabled
         this.pcrEnabled = pcrEnabled
@@ -463,14 +463,14 @@ class GameInfoEntity(
 
     fun toKGameManager() = KGameManager(
         gameEnd = this.gameEnd,
-        gameEndType = this.gameEndType,
+        gameEndType = this.gameEndType
     )
 
     fun toKLocalDataManager() = KLocalDataManager(
         pairs = this.pairs.map {
             KLocalDataPair(
                 key = it.pairKey,
-                date = it.date,
+                date = it.date
             )
         }
     )
@@ -497,5 +497,5 @@ class GameInfoEntity(
 @Embeddable
 data class KLocalDataPairEntity(
     val pairKey: String,
-    val date: String,
+    val date: String
 )

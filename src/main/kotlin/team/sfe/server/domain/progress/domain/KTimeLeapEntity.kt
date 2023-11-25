@@ -75,9 +75,9 @@ class KTimeLeapEntity(
             totalPerson = this.totalPerson,
             healthyPerson = this.healthyPerson,
             deathPerson = this.deathPerson,
-            infectedPerson = this.infectedPerson,
+            infectedPerson = this.infectedPerson
         ),
         diseaseGraph = diseaseGraph,
-        personGraph = personGraph,
+        personGraph = personGraph
     )
 }

@@ -22,7 +22,7 @@ data class GetProgressResponse(
             kServerDataManager = KServerDataManager(kTimeLeapEntities.map { it.toKTimeLeap() }),
             kTimeManager = gameInfoEntity.toKTimeManager(),
             kValueManager = gameInfoEntity.toKValueManager(),
-            lastSaveDate = gameInfoEntity.lastSaveDate,
+            lastSaveDate = gameInfoEntity.lastSaveDate
         )
     }
 }

@@ -114,7 +114,7 @@ data class KLocalDataPair(
 ) {
     fun toKLocalDataPairEntity() = KLocalDataPairEntity(
         pairKey = this.key,
-        date = this.date,
+        date = this.date
     )
 }
 
