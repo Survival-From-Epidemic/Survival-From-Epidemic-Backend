@@ -1,15 +1,22 @@
 package team.sfe.server.domain.progress.domain
 
+import jakarta.persistence.CollectionTable
 import jakarta.persistence.Column
+import jakarta.persistence.Convert
+import jakarta.persistence.ElementCollection
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.MapsId
 import jakarta.persistence.OneToOne
 import jakarta.validation.constraints.NotNull
+import team.sfe.server.domain.progress.domain.type.GameEndType
 import team.sfe.server.domain.progress.presentation.dto.Disease
 import team.sfe.server.domain.progress.presentation.dto.Person
 import team.sfe.server.domain.user.domain.UserEntity
+import team.sfe.server.global.converter.StringListToStringConverter
 import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
@@ -22,6 +29,7 @@ class GameInfoEntity(
     @JoinColumn(name = "user_id")
     val userEntity: UserEntity,
 
+    // KValueManager
     diseaseEnabled: Boolean,
 
     pcrEnabled: Boolean,
@@ -34,7 +42,36 @@ class GameInfoEntity(
 
     vaccineEnded: Boolean,
 
-    etc: String,
+    // KValueManager 안에 LocalGridData
+    nodeIdx: Int,
+
+    name: String,
+
+    message: String,
+
+    weight: Float,
+
+    parent: List<String>,
+
+    child: List<String>,
+
+    // LocalGridData 안에 GridDisease
+    infectWeightGridDisease: Float,
+
+    infectivityGridDisease: Float,
+
+    infectPowerGridDisease: Float,
+
+    modificationDecrease: Int,
+
+    // LocalGridData 안에 GridAuthority
+    study: Int,
+
+    concentration: Int,
+
+    mask: Int,
+
+    annoy: Int,
 
     infectWeight: Float,
 
@@ -42,13 +79,95 @@ class GameInfoEntity(
 
     infectPower: Float,
 
+    preInfectWeight: Float,
+
+    preInfectivity: Int,
+
+    preInfectPower: Float,
+
     totalPerson: Int,
 
     healthyPerson: Int,
 
     deathPerson: Int,
 
-    infectedPerson: Int
+    infectedPerson: Int,
+
+    banbal: Float,
+
+    authority: Float,
+
+    currentBanbal: Int,
+
+    banbalDate: Int,
+
+    authorityDate: Int,
+
+    authorityGoodDate: Int,
+
+    currentAuthority: Float,
+    // ---------------------------------
+
+    // KGameManager
+    gameEnd: Boolean,
+
+    gameEndType: GameEndType,
+    // ---------------------------------
+
+    // KLocalDataManager
+    @ElementCollection @CollectionTable(
+        name = "KLocalDataPairEntity",
+        joinColumns = [JoinColumn(name = "gameInfoId")]
+    ) val pairs: List<KLocalDataPair>,
+    // ---------------------------------
+
+    // KMoneyManager
+    money: Int,
+    // ---------------------------------
+
+    // KNewsManager
+    newsKeys: List<String>,
+    // ---------------------------------
+
+    // KTimeManager
+    speedIdx: Int,
+
+    timeScale: Float,
+
+    date: Int,
+
+    nextNews: Int,
+
+    modificationCount: Int,
+
+    infectDate: String,
+
+    infectGlobalDate: String,
+
+    kitDate: String,
+
+    nextKitUpgradeDate: String,
+
+    nextModificationDate: String,
+
+    pcrDate: String,
+
+    startDate: String,
+
+    today: String,
+
+    vaccineEndDate: String,
+
+    vaccineStartDate: String,
+
+    lastMoneyMonth: Int,
+
+    started: Boolean,
+
+    globalInfected: Boolean,
+    // ---------------------------------
+
+    lastSaveDate: String
 ) : BaseIdEntity(id) {
 
     @field:NotNull
@@ -82,8 +201,61 @@ class GameInfoEntity(
         protected set
 
     @field:NotNull
-    @Column(columnDefinition = "TEXT")
-    var etc = etc
+    var nodeIdx = nodeIdx
+        protected set
+
+    @field:NotNull
+    var name = name
+        protected set
+
+    @field:NotNull
+    var message = message
+        protected set
+
+    @field:NotNull
+    var weight = weight
+        protected set
+
+    @field:NotNull
+    @Convert(converter = StringListToStringConverter::class)
+    var parent = parent
+        protected set
+
+    @field:NotNull
+    @Convert(converter = StringListToStringConverter::class)
+    var child = child
+        protected set
+
+    @field:NotNull
+    var infectWeightGridDisease = infectWeightGridDisease
+        protected set
+
+    @field:NotNull
+    var infectivityGridDisease = infectivityGridDisease
+        protected set
+
+    @field:NotNull
+    var infectPowerGridDisease = infectPowerGridDisease
+        protected set
+
+    @field:NotNull
+    var modificationDecrease = modificationDecrease
+        protected set
+
+    @field:NotNull
+    var study = study
+        protected set
+
+    @field:NotNull
+    var concentration = concentration
+        protected set
+
+    @field:NotNull
+    var mask = mask
+        protected set
+
+    @field:NotNull
+    var annoy = annoy
         protected set
 
     @field:NotNull
@@ -102,23 +274,155 @@ class GameInfoEntity(
         protected set
 
     @field:NotNull
+    @Column(columnDefinition = "TINYINT(1)")
+    var gameEnd = gameEnd
+        protected set
+
+    @field:NotNull
+    @Enumerated(EnumType.STRING)
+    var gameEndType = gameEndType
+        protected set
+
+    @field:NotNull
     @Column(columnDefinition = "INT")
+    var money = money
+        protected set
+
+    @field:NotNull
+    @Convert(converter = StringListToStringConverter::class)
+    var newsKeys = newsKeys
+        protected set
+
+    @field:NotNull
+    var speedIdx = speedIdx
+        protected set
+
+    @field:NotNull
+    var timeScale = timeScale
+        protected set
+
+    @field:NotNull
+    var date = date
+        protected set
+
+    @field:NotNull
+    var nextNews = nextNews
+        protected set
+
+    @field:NotNull
+    var modificationCount = modificationCount
+        protected set
+
+    @field:NotNull
+    var infectDate = infectDate
+        protected set
+
+    @field:NotNull
+    var infectGlobalDate = infectGlobalDate
+        protected set
+
+    @field:NotNull
+    var kitDate = kitDate
+        protected set
+
+    @field:NotNull
+    var nextKitUpgradeDate = nextKitUpgradeDate
+        protected set
+
+    @field:NotNull
+    var nextModificationDate = nextModificationDate
+        protected set
+
+    @field:NotNull
+    var pcrDate = pcrDate
+        protected set
+
+    @field:NotNull
+    var startDate = startDate
+        protected set
+
+    @field:NotNull
+    var today = today
+        protected set
+
+    @field:NotNull
+    var vaccineEndDate = vaccineEndDate
+        protected set
+
+    @field:NotNull
+    var vaccineStartDate = vaccineStartDate
+        protected set
+
+    @field:NotNull
+    var lastMoneyMonth = lastMoneyMonth
+        protected set
+
+    @field:NotNull
+    var started = started
+        protected set
+
+    @field:NotNull
+    var globalInfected = globalInfected
+        protected set
+
+    @field:NotNull
     var totalPerson = totalPerson
         protected set
 
     @field:NotNull
-    @Column(columnDefinition = "INT")
     var healthyPerson = healthyPerson
         protected set
 
     @field:NotNull
-    @Column(columnDefinition = "INT")
     var deathPerson = deathPerson
         protected set
 
     @field:NotNull
-    @Column(columnDefinition = "INT")
     var infectedPerson = infectedPerson
+        protected set
+
+    @field:NotNull
+    var preInfectWeight = preInfectWeight
+        protected set
+
+    @field:NotNull
+    var preInfectivity = preInfectivity
+        protected set
+
+    @field:NotNull
+    var preInfectPower = preInfectPower
+        protected set
+
+    @field:NotNull
+    var banbal = banbal
+        protected set
+
+    @field:NotNull
+    var authority = authority
+        protected set
+
+    @field:NotNull
+    var currentBanbal = currentBanbal
+        protected set
+
+    @field:NotNull
+    var banbalDate = banbalDate
+        protected set
+
+    @field:NotNull
+    var authorityDate = authorityDate
+        protected set
+
+    @field:NotNull
+    var authorityGoodDate = authorityGoodDate
+        protected set
+
+    @field:NotNull
+    var currentAuthority = currentAuthority
+        protected set
+
+    @field:NotNull
+    var lastSaveDate = lastSaveDate
         protected set
 
     fun updateGameInfo(
@@ -128,14 +432,13 @@ class GameInfoEntity(
         kitChance: Int,
         vaccineResearch: Boolean,
         vaccineEnded: Boolean,
-        etc: String,
         infectWeight: Float,
         infectivity: Int,
         infectPower: Float,
         totalPerson: Int,
         healthyPerson: Int,
         deathPerson: Int,
-        infectedPerson: Int
+        infectedPerson: Int,
     ) {
         this.diseaseEnabled = diseaseEnabled
         this.pcrEnabled = pcrEnabled
@@ -143,7 +446,6 @@ class GameInfoEntity(
         this.kitChance = kitChance
         this.vaccineResearch = vaccineResearch
         this.vaccineEnded = vaccineEnded
-        this.etc = etc
         this.infectWeight = infectWeight
         this.infectivity = infectivity
         this.infectPower = infectPower

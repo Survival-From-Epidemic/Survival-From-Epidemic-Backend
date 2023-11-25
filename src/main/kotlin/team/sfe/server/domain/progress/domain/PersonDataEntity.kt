@@ -10,7 +10,6 @@ import jakarta.persistence.ManyToOne
 import jakarta.validation.constraints.NotNull
 import team.sfe.server.domain.progress.domain.type.SymptomType
 import team.sfe.server.domain.progress.presentation.dto.PersonData
-import team.sfe.server.domain.user.domain.UserEntity
 import team.sfe.server.global.entity.BaseIdEntity
 
 @Entity
@@ -19,8 +18,8 @@ class PersonDataEntity(
 
     @field:NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    val userEntity: UserEntity,
+    @JoinColumn(name = "game_info_id")
+    val gameInfoEntity: GameInfoEntity,
 
     catchData: Int,
 
@@ -30,7 +29,7 @@ class PersonDataEntity(
 
     deathWeight: Float,
 
-    recoverWeight: Float
+    recoverWeight: Float,
 ) : BaseIdEntity(id) {
 
     @field:NotNull
@@ -64,7 +63,7 @@ class PersonDataEntity(
         isInfected: Boolean,
         symptomType: SymptomType,
         deathWeight: Float,
-        recoverWeight: Float
+        recoverWeight: Float,
     ) {
         this.catchData = catchData
         this.isInfected = isInfected
