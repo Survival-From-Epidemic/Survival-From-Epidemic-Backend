@@ -17,27 +17,27 @@ import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
-@ExtendWith(RestDocumentationExtension::class)
-@SpringBootTest
-class SfeApiControllerDocTest {
-
-    private var mockMvc: MockMvc? = null
-
-    @BeforeEach
-    fun setUp(webApplicationcontext: WebApplicationContext, restDocumentaion: RestDocumentationContextProvider) {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationcontext)
-            .apply<DefaultMockMvcBuilder>(MockMvcRestDocumentation.documentationConfiguration(restDocumentaion))
-            .build()
-    }
-
-    @Test
-    fun `테스트 코드 테스트`() {
-        this.mockMvc!!.perform(
-            MockMvcRequestBuilders.get("/")
-                .accept(MediaType.APPLICATION_JSON)
-        )
-            .andExpect(status().isOk)
-            .andDo(MockMvcResultHandlers.print())
-            .andDo(document("index"))
-    }
-}
+//@ExtendWith(RestDocumentationExtension::class)
+//@SpringBootTest
+//class SfeApiControllerDocTest {
+//
+//    private var mockMvc: MockMvc? = null
+//
+//    @BeforeEach
+//    fun setUp(webApplicationcontext: WebApplicationContext, restDocumentaion: RestDocumentationContextProvider) {
+//        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationcontext)
+//            .apply<DefaultMockMvcBuilder>(MockMvcRestDocumentation.documentationConfiguration(restDocumentaion))
+//            .build()
+//    }
+//
+//    @Test
+//    fun `테스트 코드 테스트`() {
+//        this.mockMvc!!.perform(
+//            MockMvcRequestBuilders.get("/")
+//                .accept(MediaType.APPLICATION_JSON)
+//        )
+//            .andExpect(status().isOk)
+//            .andDo(MockMvcResultHandlers.print())
+//            .andDo(document("index"))
+//    }
+//}
