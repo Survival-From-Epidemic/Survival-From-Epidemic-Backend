@@ -1,12 +1,12 @@
-//package team.sfe.server.global.security.jwt
+// package team.sfe.server.global.security.jwt
 //
-//import io.jsonwebtoken.Header.JWT_TYPE
-//import io.jsonwebtoken.Jwts
-//import org.assertj.core.api.Assertions.assertThat
-//import org.junit.jupiter.api.Test
-//import team.sfe.server.domain.user.domain.type.Authority.USER
+// import io.jsonwebtoken.Header.JWT_TYPE
+// import io.jsonwebtoken.Jwts
+// import org.assertj.core.api.Assertions.assertThat
+// import org.junit.jupiter.api.Test
+// import team.sfe.server.domain.user.domain.type.Authority.USER
 //
-//class JwtProviderTest {
+// class JwtProviderTest {
 //
 //    @Test
 //    fun `유저의 정보를 담은 access_token을 생성한다`() {
@@ -32,4 +32,4 @@
 //        assertThat(parsedJwt.body.subject).isEqualTo(issuer)
 //        assertThat(parsedJwt.body[JwtConstant.AUTHORITY]).isEqualTo(authority.name)
 //    }
-//}
+// }
