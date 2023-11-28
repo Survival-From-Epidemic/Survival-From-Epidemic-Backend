@@ -124,22 +124,26 @@ tasks.jacocoTestReport {
         csv.required.set(false)
     }
 
-    classDirectories.setFrom(files(classDirectories.files.map {
-        fileTree(it) {
-            setExcludes(
-                listOf(
-                    "**/exception/*.*",
-                    "**/global/config/*.*",
-                    "**/global/converter/*.*",
-                    "**/global/entity/*.*",
-                    "**/global/error/*.*",
-                    "**/global/filter/*.*",
-                    "**/global/redis/*.*",
-                    "**/global/security/SecurityConfig.*",
-                )
-            )
-        }
-    }))
+    classDirectories.setFrom(
+        files(
+            classDirectories.files.map {
+                fileTree(it) {
+                    setExcludes(
+                        listOf(
+                            "**/exception/*.*",
+                            "**/global/config/*.*",
+                            "**/global/converter/*.*",
+                            "**/global/entity/*.*",
+                            "**/global/error/*.*",
+                            "**/global/filter/*.*",
+                            "**/global/redis/*.*",
+                            "**/global/security/SecurityConfig.*"
+                        )
+                    )
+                }
+            }
+        )
+    )
 
     finalizedBy("jacocoTestCoverageVerification")
 }
