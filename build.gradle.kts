@@ -145,10 +145,10 @@ tasks.jacocoTestReport {
         )
     )
 
-    finalizedBy("jacocoTestCoverageVerification")
+//    finalizedBy("jacocoTestCoverageVerification")
 }
 
-tasks.jacocoTestCoverageVerification {
+//tasks.jacocoTestCoverageVerification {
 //    violationRules {
 //        rule {
 //            element = "CLASS"
@@ -159,4 +159,4 @@ tasks.jacocoTestCoverageVerification {
 //                minimum = "0.90".toBigDecimal()
 //            }
 //        }
-}
+//}
