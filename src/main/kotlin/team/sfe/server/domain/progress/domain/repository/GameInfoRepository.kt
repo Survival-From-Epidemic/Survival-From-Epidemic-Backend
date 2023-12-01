@@ -6,4 +6,6 @@ import team.sfe.server.domain.user.domain.UserEntity
 
 interface GameInfoRepository : CrudRepository<GameInfoEntity, Long> {
     fun findByUserEntity(userEntity: UserEntity): GameInfoEntity?
+
+    fun deleteByUserEntity(userEntity: UserEntity)
 }

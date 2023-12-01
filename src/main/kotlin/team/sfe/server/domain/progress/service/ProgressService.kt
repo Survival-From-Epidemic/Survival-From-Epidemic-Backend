@@ -7,4 +7,6 @@ interface ProgressService {
     fun saveProgress(request: SaveProgressRequest)
 
     fun getProgress(): GetProgressResponse
+
+    fun deleteProgress()
 }
