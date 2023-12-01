@@ -1,6 +1,7 @@
 package team.sfe.server.domain.progress.presentation
 
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -25,5 +26,11 @@ class ProgressController(
     @GetMapping
     fun getProgress(): GetProgressResponse {
         return progressService.getProgress()
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping
+    fun deleteProgress() {
+        progressService.deleteProgress()
     }
 }

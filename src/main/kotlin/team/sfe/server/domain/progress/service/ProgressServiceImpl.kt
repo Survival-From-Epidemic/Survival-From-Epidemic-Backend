@@ -46,6 +46,16 @@ class ProgressServiceImpl(
         )
     }
 
+    @Transactional
+    override fun deleteProgress() {
+        val currentUser = userFacade.getCurrentUser()
+
+        val gameInfoEntity = gameInfoRepository.findByUserEntity(currentUser) ?: throw ProgressNotFoundException
+
+        kTimeLeapRepository.deleteAllByGameInfoEntity(gameInfoEntity)
+        gameInfoRepository.deleteByUserEntity(currentUser)
+    }
+
     private fun saveGameInfo(request: SaveProgressRequest, currentUser: UserEntity) {
         val savedGameInfoEntity = gameInfoRepository.save(request.toGameInfoEntity(currentUser))
         kTimeLeapRepository.saveAll(request.toKTimeLeapEntity(savedGameInfoEntity))
