@@ -42,4 +42,4 @@ jobs:
       with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./build/reports/jacoco/test/jacocoTestReport.xml
-          directory: ./Survival-From-Epidemic-Backend
+          working-directory: ./Survival-From-Epidemic-Backend
