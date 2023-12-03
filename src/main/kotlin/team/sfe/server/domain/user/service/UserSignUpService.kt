@@ -22,7 +22,7 @@ class UserSignUpService(
     fun execute(request: UserSignUpRequest): TokenResponse {
         userFacade.isUserAlreadyExists(request.accountId)
 
-        userRepository.save(
+        val user = userRepository.save(
             UserEntity(
                 accountId = request.accountId,
                 password = passwordEncoder.encode(request.password),
@@ -30,6 +30,6 @@ class UserSignUpService(
             )
         )
 
-        return jwtProvider.generateAllToken(request.accountId, Authority.USER)
+        return jwtProvider.generateAllToken(user.accountId, user.authority)
     }
 }
