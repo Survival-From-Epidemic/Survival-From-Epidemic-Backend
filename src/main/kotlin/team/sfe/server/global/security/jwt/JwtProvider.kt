@@ -38,16 +38,6 @@ class JwtProvider(
         )
     }
 
-    fun generateToken(id: String, authority: Authority, type: String, exp: Long) =
-        Jwts.builder()
-            .setHeaderParam(Header.JWT_TYPE, type)
-            .setSubject(id)
-            .claim(AUTHORITY, authority.name)
-            .signWith(jwtProperties.secretKey, SignatureAlgorithm.HS256)
-            .setIssuedAt(Date())
-            .setExpiration(Date(System.currentTimeMillis() + exp * 1000))
-            .compact()
-
     fun generateAccessToken(id: String, authority: Authority) = generateToken(
         id,
         authority,
@@ -61,4 +51,14 @@ class JwtProvider(
         REFRESH,
         jwtProperties.refreshExp
     )
+
+    private fun generateToken(id: String, authority: Authority, type: String, exp: Long) =
+        Jwts.builder()
+            .setHeaderParam(Header.JWT_TYPE, type)
+            .setSubject(id)
+            .claim(AUTHORITY, authority.name)
+            .signWith(jwtProperties.secretKey, SignatureAlgorithm.HS256)
+            .setIssuedAt(Date())
+            .setExpiration(Date(System.currentTimeMillis() + exp * 1000))
+            .compact()
 }

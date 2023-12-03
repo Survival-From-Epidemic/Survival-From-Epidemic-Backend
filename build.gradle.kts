@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("org.springframework.boot") version "3.1.4"
@@ -10,6 +9,7 @@ plugins {
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
     kotlin("kapt") version "1.8.21"
+    jacoco
 }
 
 group = "team.sfe"
@@ -36,7 +36,7 @@ dependencies {
     // persistence
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("com.mysql:mysql-connector-j")
-    runtimeOnly("com.h2database:h2")
+    testRuntimeOnly("com.h2database:h2")
 
     // security
     implementation("org.springframework.boot:spring-boot-starter-security")
@@ -78,6 +78,7 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    finalizedBy("jacocoTestReport")
 }
 
 val asciidoctorExt: Configuration by configurations.creating
@@ -111,3 +112,51 @@ tasks {
 tasks.getByName<Jar>("jar") {
     enabled = false
 }
+
+jacoco {
+    toolVersion = "0.8.8"
+}
+
+tasks.jacocoTestReport {
+    reports {
+        html.required.set(true)
+        xml.required.set(true)
+        csv.required.set(false)
+    }
+
+    classDirectories.setFrom(
+        files(
+            classDirectories.files.map {
+                fileTree(it) {
+                    setExcludes(
+                        listOf(
+                            "**/exception/*.*",
+                            "**/global/config/*.*",
+                            "**/global/converter/*.*",
+                            "**/global/entity/*.*",
+                            "**/global/error/*.*",
+                            "**/global/filter/*.*",
+                            "**/global/redis/*.*",
+                            "**/global/security/SecurityConfig.*"
+                        )
+                    )
+                }
+            }
+        )
+    )
+
+//    finalizedBy("jacocoTestCoverageVerification")
+}
+
+// tasks.jacocoTestCoverageVerification {
+//    violationRules {
+//        rule {
+//            element = "CLASS"
+//
+//            limit {
+//                counter = "BRANCH"
+//                value = "COVEREDRATIO"
+//                minimum = "0.90".toBigDecimal()
+//            }
+//        }
+// }
