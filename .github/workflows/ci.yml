@@ -32,7 +32,10 @@ jobs:
          echo "${{ secrets.TEST_APPLICATION }}" | base64 --decode > src/test/resources/application.yml
 
     - name: run test
-      run: ./gradlew test
+      run: |
+          ./gradlew test
+          ls -la ./build/reports/jacoco/test/
+    
 
     - name: run build
       run: ./gradlew clean build -x test
