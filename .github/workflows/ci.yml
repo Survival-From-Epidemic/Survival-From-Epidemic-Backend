@@ -32,10 +32,7 @@ jobs:
          echo "${{ secrets.TEST_APPLICATION }}" | base64 --decode > src/test/resources/application.yml
 
     - name: run test
-      run: |
-          ./gradlew test
-          ls -la ./build/reports/jacoco/test/
-    
+      run: ./gradlew test
 
     - name: run build
       run: ./gradlew clean build -x test
@@ -45,3 +42,4 @@ jobs:
       with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./build/reports/jacoco/test/jacocoTestReport.xml
+      working-directory: .
