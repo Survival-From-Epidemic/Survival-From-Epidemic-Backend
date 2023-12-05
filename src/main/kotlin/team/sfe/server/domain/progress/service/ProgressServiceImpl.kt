@@ -17,7 +17,6 @@ class ProgressServiceImpl(
     private val gameInfoRepository: GameInfoRepository,
     private val kTimeLeapRepository: KTimeLeapRepository
 ) : ProgressService {
-
     @Transactional
     override fun saveProgress(request: SaveProgressRequest) {
         val currentUser = userFacade.getCurrentUser()
